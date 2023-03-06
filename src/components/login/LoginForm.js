@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import logoimg from "../../assets/logo.png";
 
 const LoginForm = () => {
@@ -70,9 +70,9 @@ const LoginForm = () => {
           </button>
         </form>
         <div className="my-3">
-          <NavLink to="/registration">
+          {/* <NavLink to="/registration">
             Not yet registered? Register Now
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
     </>

@@ -1,13 +1,13 @@
 .formouter {
   max-width: 500px;
   width: 100%;
-  position: absolute;
+  /* position: absolute; */
   top: 55%;
   bottom: 0;
   left: 0;
   right: 0;
-  transform: translateY(-50%);
-  margin: auto;
+  /* transform: translateY(-50%); */
+  margin:50px auto;
 }
 .lgoimg {
   text-align: center;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import logoimg from "../../assets/logo.png"
 
 
@@ -95,7 +95,7 @@ function Registration() {
           )}
           <button className="btn btn-success my-3" type="submit">Continue</button>
         </form>
-        <NavLink to="/login">Already registered? Login</NavLink>
+        {/* <NavLink to="/login">Already registered? Login</NavLink> */}
       </div>
     </>
   );
