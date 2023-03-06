@@ -1,63 +1,66 @@
-import React from 'react'
+import React, { useState } from "react";
+import logoimg from "../../assets/logo.png"
 
-export default function LoginForm() {
+const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form inputs
+    const errors = {};
+    if (!email) {
+      errors.email = "Email is required";
+    }
+    if (!password) {
+      errors.password = "Password is required";
+    }
+
+    // If there are no errors, log the input values and reset the form
+    if (Object.keys(errors).length === 0) {
+      console.log(`Email: ${email}, Password: ${password}`);
+      setEmail("");
+      setPassword("");
+      setErrors({});
+    } else {
+      setErrors(errors);
+    }
+  };
+
   return (
-    <div className="my-5">
-    <div className="container">
-    <form>
-    {/* <!-- Email input --> */}
-    <div className="form-outline mb-4">
-    <label className="form-label" htmlFor="form2Example1">Email address</label>
-      <input type="email" id="form2Example1" className="form-control" />
+    <>
+    <div className="loginform">
+    <div className="lgoimg">
+      <img src={logoimg} alt="" />
     </div>
-  
-    {/* <!-- Password input --> */}
-    <div className="form-outline mb-4">
-    <label className="form-label" htmlFor="form2Example2">Password</label>
-      <input type="password" id="form2Example2" className="form-control" />
-    </div>
-  
-    {/* <!-- 2 column grid layout for inline styling --> */}
-    <div className="row mb-4">
-      <div className="col d-flex justify-content-center">
-        {/* <!-- Checkbox --> */}
-        {/* <div className="form-check">
-          <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-          <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
-        </div> */}
+    <form onSubmit={handleSubmit}>
+      <div className="my-3">
+        <label className="form-label" htmlFor="email">Email</label>
+        <input className="form-control"
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {errors.email && <div className="errors">{errors.email}</div>}
       </div>
-  
-      <div className="col">
-        {/* <!-- Simple link --> */}
-        <a href="#!">Forgot password?</a>
+      <div className="my-3">
+        <label className="form-label" htmlFor="password">Password</label>
+        <input className="form-control"
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {errors.password && <div className="errors">{errors.password}</div>}
       </div>
+      <button className="btn btn-success my-3" type="submit">Submit</button>
+    </form>
     </div>
-  
-    {/* <!-- Submit button --> */}
-    <button type="button" className="btn btn-primary btn-block mb-4">Sign in</button>
-  
-    {/* <!-- Register buttons --> */}
-    <div className="text-center">
-      <p>Not a member? <a href="#!">Register</a></p>
-      <p>or sign up with:</p>
-      <button type="button" className="btn btn-link btn-floating mx-1">
-        <i className="fab fa-facebook-f"></i>
-      </button>
-  
-      <button type="button" className="btn btn-link btn-floating mx-1">
-        <i className="fab fa-google"></i>
-      </button>
-  
-      <button type="button" className="btn btn-link btn-floating mx-1">
-        <i className="fab fa-twitter"></i>
-      </button>
-  
-      <button type="button" className="btn btn-link btn-floating mx-1">
-        <i className="fab fa-github"></i>
-      </button>
-    </div>
-  </form>
-  </div>
-  </div>
-  )
-}
+    </>
+  );
+};
+
+export default LoginForm;
