@@ -31,7 +31,7 @@ const LoginForm = () => {
 
   return (
     <>
-    <div className="loginform">
+    <div className="formouter">
     <div className="lgoimg">
       <img src={logoimg} alt="" />
     </div>
@@ -58,6 +58,7 @@ const LoginForm = () => {
       </div>
       <button className="btn btn-success my-3" type="submit">Submit</button>
     </form>
+    {/* <NavLink to="/signup">Not yet registered? Register Now</NavLink> */}
     </div>
     </>
   );
