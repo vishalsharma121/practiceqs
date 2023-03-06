@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logoimg from "../../assets/logo.png"
+import { NavLink } from "react-router-dom";
+import logoimg from "../../assets/logo.png";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -31,35 +32,49 @@ const LoginForm = () => {
 
   return (
     <>
-    <div className="formouter">
-    <div className="lgoimg">
-      <img src={logoimg} alt="" />
-    </div>
-    <form onSubmit={handleSubmit}>
-      <div className="my-3">
-        <label className="form-label" htmlFor="email">Email</label>
-        <input className="form-control"
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {errors.email && <div className="errors">{errors.email}</div>}
+      <div className="formouter">
+        <div className="lgoimg">
+          <img src={logoimg} alt="" />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="my-3">
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="form-control"
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email && <div className="errors">{errors.email}</div>}
+          </div>
+          <div className="my-3">
+            <label className="form-label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="form-control"
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errors.password && (
+              <div className="errors">{errors.password}</div>
+            )}
+          </div>
+          <button className="btn btn-success my-3" type="submit">
+            Submit
+          </button>
+        </form>
+        <div className="my-3">
+          <NavLink to="/registration">
+            Not yet registered? Register Now
+          </NavLink>
+        </div>
       </div>
-      <div className="my-3">
-        <label className="form-label" htmlFor="password">Password</label>
-        <input className="form-control"
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <div className="errors">{errors.password}</div>}
-      </div>
-      <button className="btn btn-success my-3" type="submit">Submit</button>
-    </form>
-    {/* <NavLink to="/signup">Not yet registered? Register Now</NavLink> */}
-    </div>
     </>
   );
 };

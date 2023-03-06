@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import logoimg from "../../assets/logo.png"
+
 
 function Registration() {
   const [firstname, setFirstname] = useState('');
@@ -13,6 +15,10 @@ function Registration() {
     if (errors.length === 0) {
       // Submit the form data to the server
       console.log('Submitting form:', { firstname, lastname, password });
+      setFirstname('');
+      setLastname('');
+      setPassword('');
+      setFormErrors([]);
     } else {
       setFormErrors(errors);
     }
@@ -39,55 +45,58 @@ function Registration() {
 
   return (
     <>
-    <div className="formouter">
-    <div className="lgoimg">
-      <img src={logoimg} alt="" />
-    </div>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label className="form-label" htmlFor="firstname">First name:</label>
-        <input className="form-control"
-          type="text"
-          id="firstname"
-          value={firstname}
-          onChange={(event) => setFirstname(event.target.value)}
-          required
-        />
+      <div className="formouter">
+        <div className="lgoimg">
+          <img src={logoimg} alt="" />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label className="form-label" htmlFor="firstname">First name:</label>
+            <input
+              className="form-control"
+              type="text"
+              id="firstname"
+              value={firstname}
+              onChange={(event) => setFirstname(event.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="form-label" htmlFor="lastname">Last name:</label>
+            <input
+              className="form-control"
+              type="text"
+              id="lastname"
+              value={lastname}
+              onChange={(event) => setLastname(event.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="form-label" htmlFor="password">New password:</label>
+            <input
+              className="form-control"
+              type="password"
+              id="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              minLength={8}
+              required
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\s]).{8,}$"
+              title="Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one number or symbol."
+            />
+          </div>
+          {formErrors.length > 0 && (
+            <ul>
+              {formErrors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
+          <button className="btn btn-success my-3" type="submit">Continue</button>
+        </form>
+        <NavLink to="/login">Already registered? Login</NavLink>
       </div>
-      <div>
-        <label className="form-label" htmlFor="lastname">Last name:</label>
-        <input className="form-control"
-          type="text"
-          id="lastname"
-          value={lastname}
-          onChange={(event) => setLastname(event.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label className="form-label" htmlFor="password">New password:</label>
-        <input className="form-control"
-          type="password"
-          id="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          minLength={8}
-          required
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\s]).{8,}$"
-          title="Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one number or symbol."
-        />
-      </div>
-      {formErrors.length > 0 && (
-        <ul>
-          {formErrors.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
-      )}
-      <button className="btn btn-success my-3" type="submit">Continue</button>
-    </form>
-    {/* <NavLink to="/login">Already registered? Login</NavLink> */}
-    </div>
     </>
   );
 }
